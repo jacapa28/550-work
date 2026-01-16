@@ -1,4 +1,4 @@
-
+import math
 
 def create_array(numbers: str) -> list[int]:
     retval = []
@@ -11,23 +11,25 @@ def create_array(numbers: str) -> list[int]:
             currentnum = ""
     return retval
 
-def twosum_alg(array: list[int], t: int) -> None:
+def binary_search(array: list[int], t: int) -> None:
     i, j = 0, len(array)-1
     while i <= j:
-        if array[i] + array[j] == t:
-            print(f"i = {i+1}; j = {j+1}")
-            return
-        if array[i] + array[j] < t:
-            i += 1
+        m = math.floor((i+j)/2)
+        print(m+1, end="")
+        if array[m] == t:
+            return 
+        if array[m] < t:
+            i = m + 1
+            print(", ", end="")
         else:
-            j -= 1
-    print(f"no two numbers add up to {t}.")
+            j = m - 1
+            print(", ", end="")
 
 def main() -> str:
     numbers = input("enter the array: ")
     t = input("enter t: ")
     array = create_array(numbers)
-    twosum_alg(array,int(t))
+    binary_search(array,int(t))
 
 if __name__ == "__main__":
     main()

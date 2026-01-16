@@ -11,23 +11,21 @@ def create_array(numbers: str) -> list[int]:
             currentnum = ""
     return retval
 
-def twosum_alg(array: list[int], t: int) -> None:
-    i, j = 0, len(array)-1
-    while i <= j:
-        if array[i] + array[j] == t:
-            print(f"i = {i+1}; j = {j+1}")
-            return
-        if array[i] + array[j] < t:
-            i += 1
-        else:
-            j -= 1
-    print(f"no two numbers add up to {t}.")
+def selection_sort(array: list[int]) -> None:
+    for i in range(len(array)):
+        m = i
+        for j in range(i + 1, len(array)):
+            if array[j] < array[m]:
+                m = j
+        temp = array[i]
+        array[i] = array[m]
+        array[m] = temp
+        print(f"iteration {i+1}: {array}")
 
 def main() -> str:
     numbers = input("enter the array: ")
-    t = input("enter t: ")
     array = create_array(numbers)
-    twosum_alg(array,int(t))
+    selection_sort(array)
 
 if __name__ == "__main__":
     main()
